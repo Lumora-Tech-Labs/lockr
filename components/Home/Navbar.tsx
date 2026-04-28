@@ -6,6 +6,7 @@ export default function Navbar() {
     { name: 'About', href: '#about' },
     { name: 'Features', href: '#features' },
     { name: 'How It Works', href: '#howitworks' },
+    { name: 'Pricing', href: '#pricing' },
   ];
 
   return (
