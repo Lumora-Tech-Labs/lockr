@@ -1,65 +1,56 @@
 import Link from 'next/link';
-import { SignInButton, SignUpButton } from '@clerk/nextjs';
+import { Lock } from 'lucide-react';
 
 export default function Navbar() {
-  const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Features', href: '#features' },
-    { name: 'How It Works', href: '#howitworks' },
-    { name: 'Pricing', href: '#pricing' },
-  ];
-
   return (
-    <header className="bg-white px-6 py-4 border-b">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Brand Name */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-2xl font-bold text-gray-900"
-        >
-          <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
-            <div className="w-5 h-5 rounded bg-pink-500 rotate-45"></div>
-          </div>
-          Lockr
-        </Link>
-
-        {/* Navigation Links */}
-        <nav className="flex items-center gap-8">
-          {navLinks.map((link, index) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`text-base font-medium ${
-                index === 0 ? 'text-pink-500' : 'text-gray-900'
-              } hover:text-pink-500 transition-colors`}
-            >
-              {link.name}
-            </Link>
-          ))}
+    <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="flex-1">
           <Link
-            href="/blog"
-            className="text-base font-medium text-gray-900 hover:text-pink-500 transition-colors"
+            href="/"
+            className="text-2xl font-bold tracking-tight text-white flex items-center gap-2"
           >
-            Blog
+            <Lock className="w-6 h-6 text-cyan-400" />
+            Lockr
           </Link>
-        </nav>
+        </div>
 
-        {/* Auth Buttons */}
-        <div className="flex items-center gap-4">
-          <SignUpButton mode="modal">
-            {/* By putting the classes on a span, Clerk sees only ONE child (the span) */}
-            <span className="cursor-pointer px-5 py-2.5 rounded-xl border border-gray-300 text-base font-medium text-gray-900 hover:bg-gray-50 transition-colors">
-              Sign up
-            </span>
-          </SignUpButton>
+        <div className="hidden md:flex flex-1 justify-center space-x-8 text-sm font-medium text-slate-300">
+          <Link 
+          href="#about" 
+          className="hover:text-cyan-400 transition-colors"
+          >
+            About
+          </Link>
+          <Link
+            href="#features"
+            className="hover:text-cyan-400 transition-colors"
+          >
+            Features
+          </Link>
+          <Link
+            href="#how-it-works"
+            className="hover:text-cyan-400 transition-colors"
+          >
+            How it works
+          </Link>
+        </div>
 
-          <SignInButton mode="modal">
-            <span className="cursor-pointer px-5 py-2.5 rounded-xl bg-black text-base font-medium text-white hover:bg-gray-800 transition-colors">
-              Log in
-            </span>
-          </SignInButton>
+        <div className="flex-1 flex justify-end items-center space-x-4 text-sm font-medium">
+          <Link
+            href="/auth/sign-in"
+            className="text-slate-300 hover:text-white transition-colors"
+          >
+            Sign In
+          </Link>
+          <Link
+            href="/auth/sign-up"
+            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 py-2 rounded-lg font-semibold transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+          >
+            Sign Up
+          </Link>
         </div>
       </div>
-    </header>
+    </nav>
   );
 }
